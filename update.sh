@@ -3,7 +3,7 @@ set -e
 
 openbsd_branch=`cat OPENBSD_BRANCH`
 
-# pull in latest upstream code
+true || (# pull in latest upstream code
 echo "pulling upstream openbsd source"
 if [ ! -d openbsd ]; then
 	if [ -z "$LIBRESSL_GIT" ]; then
@@ -12,7 +12,8 @@ if [ ! -d openbsd ]; then
 		git clone $LIBRESSL_GIT/openbsd
 	fi
 fi
-(cd openbsd
+)
+true || (cd openbsd
  git fetch
  git checkout $openbsd_branch
  git pull --rebase)
